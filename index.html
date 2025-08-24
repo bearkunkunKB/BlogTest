@@ -3,178 +3,371 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KBStu</title>
+    <title>北极熊 - 北极的白色巨人</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Microsoft YaHei', sans-serif;
-            line-height: 1.6;
+            background: linear-gradient(to bottom, #e6f7ff, #ffffff);
             color: #333;
-            background-color: #f4f4f4;
+            line-height: 1.6;
         }
         
         header {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.9)), url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
             color: white;
-            padding: 2rem 0;
+            padding: 2rem;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
-        .container {
-            width: 85%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 0;
+        .header-content {
+            max-width: 800px;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #4fc3f7;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #29b6f6;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
         nav {
-            background-color: #333;
+            background-color: #01579b;
             position: sticky;
             top: 0;
             z-index: 100;
         }
         
-        nav ul {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: center;
-            list-style: none;
         }
         
-        nav ul li a {
-            display: block;
+        .nav-link {
             color: white;
-            padding: 1rem 1.5rem;
             text-decoration: none;
-            transition: background-color 0.3s;
+            padding: 1rem 1.5rem;
+            display: inline-block;
+            transition: background 0.3s;
         }
         
-        nav ul li a:hover {
-            background-color: #555;
+        .nav-link:hover {
+            background: #0288d1;
         }
         
         section {
-            background: white;
-            margin: 2rem 0;
-            padding: 2rem;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        h2 {
-            color: #50bfff;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #f4f4f4;
-            padding-bottom: 0.5rem;
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #01579b;
+            position: relative;
         }
         
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #4fc3f7;
         }
         
-        .project-card {
-            background: #f9f9f9;
-            border-radius: 5px;
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
             overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .facts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .fact-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
         }
         
-        .project-card:hover {
-            transform: translateY(-5px);
+        .fact-card:hover {
+            transform: translateY(-10px);
         }
         
-        .project-content {
+        .fact-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .fact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .fact-card:hover .fact-image img {
+            transform: scale(1.1);
+        }
+        
+        .fact-content {
             padding: 1.5rem;
         }
         
-        footer {
-            background-color: #333;
-            color: white;
+        .fact-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #01579b;
+        }
+        
+        .threats {
+            background: #e1f5fe;
+        }
+        
+        .threats-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .threats-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .threats-list {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .threat-item {
+            background: white;
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .conservation {
             text-align: center;
-            padding: 2rem 0;
+        }
+        
+        .cta-container {
+            background: #01579b;
+            color: white;
+            padding: 3rem;
+            border-radius: 10px;
             margin-top: 2rem;
         }
         
+        footer {
+            background: #00273d;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
         @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
+            h1 {
+                font-size: 2.5rem;
             }
             
-            .container {
-                width: 95%;
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>欢迎来到我的网站</h1>
-        <p>个人简介、作品展示与联系方式</p>
+        <div class="header-content">
+            <h1>北极熊</h1>
+            <p class="subtitle">北极的白色巨人，气候变化的象征</p>
+            <p>探索这种神奇生物的生存世界，了解它们面临的挑战</p>
+            <a href="#about" class="btn">了解更多</a>
+        </div>
     </header>
     
     <nav>
-        <ul>
-            <li><a href="#about">关于我</a></li>
-            <li><a href="#projects">我的项目</a></li>
-            <li><a href="#skills">技能</a></li>
-            <li><a href="#contact">联系我</a></li>
-        </ul>
+        <div class="nav-container">
+            <a href="#about" class="nav-link">基本介绍</a>
+            <a href="#facts" class="nav-link">神奇事实</a>
+            <a href="#threats" class="nav-link">生存威胁</a>
+            <a href="#conservation" class="nav-link">保护措施</a>
+        </div>
     </nav>
     
-    <div class="container">
-        <section id="about">
-            <h2>关于我</h2>
-            <p>一个程序员,bilibili: https://space.bilibili.com/3546574275742525?spm_id_from=333.788.0.0</p>
-        </section>
-        
-        <section id="projects">
-            <h2>我的项目</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>项目一</h3>
-                        <p>项目描述和成果展示。</p>
-                    </div>
+    <section id="about">
+        <h2 class="section-title">关于北极熊</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>北极熊（学名：Ursus maritimus）是熊科熊属的一种大型食肉动物，也是世界上最大的陆地食肉动物。它们主要生活在北极圈及其周边地区，包括加拿大、阿拉斯加、格陵兰、挪威和俄罗斯的部分地区。</p>
+                <p>北极熊具有许多适应极地环境的特征，包括厚厚的脂肪层和防水皮毛，这使它们能够在极寒的水中游泳和狩猎。它们的毛看起来是白色的，但实际上是无色透明的，内部中空，能够反射可见光，形成白色的外观。</p>
+                <p>这些强大的捕食者主要以海豹为食，依靠海冰作为捕猎平台。随着气候变暖导致海冰减少，北极熊的生存正面临严重威胁。</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1589656966895-2f33e7653819?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="北极熊在雪地中行走">
+            </div>
+        </div>
+    </section>
+    
+    <section id="facts">
+        <h2 class="section-title">神奇事实</h2>
+        <div class="facts-container">
+            <div class="fact-card">
+                <div class="fact-image">
+                    <img src="https://images.unsplash.com/photo-1520085601670-ee14aa5fa3e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="北极熊游泳">
                 </div>
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>项目二</h3>
-                        <p>项目描述和成果展示。</p>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>项目三</h3>
-                        <p>项目描述和成果展示。</p>
-                    </div>
+                <div class="fact-content">
+                    <h3 class="fact-title">卓越的游泳能力</h3>
+                    <p>北极熊是出色的游泳者，能够以每小时10公里的速度连续游泳100公里。它们的部分脚蹼化，有助于在水中推进。</p>
                 </div>
             </div>
-        </section>
+            
+            <div class="fact-card">
+                <div class="fact-image">
+                    <img src="https://images.unsplash.com/photo-1500470354667-22b6b4e8bc59?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="北极熊嗅觉">
+                </div>
+                <div class="fact-content">
+                    <h3 class="fact-title">超级嗅觉</h3>
+                    <p>北极熊拥有极其敏锐的嗅觉，能够探测到1.6公里外或冰层下1米处的海豹气味，这使它们成为高效的捕猎者。</p>
+                </div>
+            </div>
+            
+            <div class="fact-card">
+                <div class="fact-image">
+                    <img src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80" alt="北极熊大小对比">
+                </div>
+                <div class="fact-content">
+                    <h3 class="fact-title">巨大的体型</h3>
+                    <p>成年雄性北极熊体重可达350-700公斤，站立时高度可达3米，是现存最大的陆地食肉动物。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="threats" class="threats">
+        <h2 class="section-title">生存威胁</h2>
+        <div class="threats-content">
+            <div class="threats-text">
+                <p>北极熊被国际自然保护联盟（IUCN）列为易危物种，它们的生存正面临多重威胁，最主要的是气候变化导致的栖息地丧失。</p>
+                <p>由于全球变暖，北极海冰正以每十年13%的速度减少。海冰是北极熊捕猎海豹的主要平台，没有海冰，北极熊难以获得足够的食物。</p>
+                <p>其他威胁包括环境污染、石油和天然气勘探、人类冲突以及过度捕猎。这些因素共同作用，使北极熊的未来充满不确定性。</p>
+            </div>
+            <div class="threats-list">
+                <div class="threat-item">
+                    <h3><i class="fas fa-temperature-high"></i> 气候变化</h3>
+                    <p>海冰融化导致栖息地丧失和食物短缺</p>
+                </div>
+                <div class="threat-item">
+                    <h3><i class="fas fa-industry"></i> 工业开发</h3>
+                    <p>石油和天然气勘探破坏栖息地，增加污染风险</p>
+                </div>
+                <div class="threat-item">
+                    <h3><i class="fas fa-trash"></i> 污染</h3>
+                    <p>持久性有机污染物在北极食物链中积累</p>
+                </div>
+                <div class="threat-item">
+                    <h3><i class="fas fa-exclamation-triangle"></i> 人类冲突</h3>
+                    <p>随着海冰减少，北极熊更多进入人类居住区寻找食物</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="conservation" class="conservation">
+        <h2 class="section-title">保护措施</h2>
+        <p>保护北极熊需要全球共同努力。国际北极熊协议禁止商业捕猎，各国也采取了各种保护措施。</p>
+        <p>减少温室气体排放是保护北极熊长期生存的关键。我们每个人都可以通过减少碳足迹来帮助减缓气候变化。</p>
+        <p>支持保护组织、传播意识和负责任旅游也是帮助保护北极熊的有效方式。</p>
         
-        <section id="skills">
-            <h2>我的技能</h2>
-            <p>在这里列出您的专业技能，例如编程语言、设计工具或其他专业能力。</p>
-        </section>
-        
-        <section id="contact">
-            <h2>联系我</h2>
-            <p>邮箱：ZhangJingkunKBStu@outlook.com</p>
-            <p>https://space.bilibili.com/3546574275742525?spm_id_from=333.788.0.0</p>
-        </section>
-    </div>
+        <div class="cta-container">
+            <h3>采取行动，保护北极熊</h3>
+            <p>加入保护组织，减少碳足迹，提高人们对北极熊困境的认识</p>
+            <a href="#" class="btn">了解更多保护方式</a>
+        </div>
+    </section>
     
     <footer>
-        <p>&copy; 2025.8 我的个人网站. 保留所有权利.</p>
+        <p>北极熊保护网站 &copy; 2023 - 共同守护北极的白色巨人</p>
+        <p>本网站仅用于教育目的，图片来源于Unsplash</p>
     </footer>
 </body>
 </html>
-
-
